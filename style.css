@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    color-scheme: dark;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #e2e8f0;
+    background-color: #0f172a;
+    accent-color: #38bdf8;
+}
+
+:root[data-theme='light'] {
+    color-scheme: light;
+    color: #111827;
+    background-color: #f8fafc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family:sans-serif;
+    background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 20%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #334155 100%);
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+:root[data-theme='light'] body {
+    background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 26%),
+                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 40%, #cbd5e1 100%);
+}
+
+body, button {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(1300px, 90%);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.25rem, 2.5vw, 3rem);
+    letter-spacing: 0.12em;
+}
+
+.hero p {
+    margin: 10px 0 0;
+    max-width: 54rem;
+    color: rgba(226, 232, 240, 0.88);
+}
+
+:root[data-theme='light'] .hero p {
+    color: #334155;
+}
+
+#theme-toggle {
+    padding: 12px 20px;
+    border: 1px solid rgba(226, 232, 240, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus-visible {
+    transform: translateY(-1px);
+    outline: none;
+    border-color: rgba(56, 189, 248, 0.8);
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    border: 1px solid rgba(226, 232, 240, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+    background: rgba(56, 189, 248, 0.16);
+    outline: none;
+}
+
+.filter-btn.active {
+    background: rgba(255, 255, 255, 0.92);
+    color: #111827;
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+:root[data-theme='light'] .filter-btn.active {
+    background: #2563eb;
+    color: #f8fafc;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.image-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(226, 232, 240, 0.08);
+}
+
+:root[data-theme='light'] .image-card {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(15, 23, 42, 0.08);
+}
+
+.image-button {
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.image-button img {
+    width: 100%;
+    display: block;
+    height: 260px;
+    object-fit: cover;
+    border-radius: inherit;
+    transition: transform 0.6s ease;
+}
+
+.image-button:hover img,
+.image-button:focus-visible img {
+    transform: scale(1.08);
+}
+
+.image-card::after {
+    content: 'View';
+    font-weight: bold;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f8fafc;
+    background: rgba(0, 0, 0, 0.28);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 1.05rem;
+    pointer-events: none;
+}
+
+.image-button:hover + .image-card::after,
+.image-button:focus-visible + .image-card::after {
+    opacity: 1;
+}
+
+.image-card:hover::after {
+    opacity: 1;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-panel {
+    position: relative;
+    width: min(900px, 100%);
+    max-height: 90vh;
+    background: rgba(15, 23, 42, 0.96);
+    border-radius: 28px;
+    box-shadow: 0 32px 100px rgba(15, 23, 42, 0.45);
+    overflow: hidden;
+}
+
+.modal-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.modal-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#modal-image {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+.close-btn,
+.arrow {
+    position: absolute;
+    border: none;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f8fafc;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.close-btn {
+    top: 16px;
+    right: 16px;
+    font-size: 1.4rem;
+}
+
+.arrow {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.left-arrow {
+    left: 16px;
+}
+
+.right-arrow {
+    right: 16px;
+}
+
+.close-btn:hover,
+.arrow:hover,
+.close-btn:focus-visible,
+.arrow:focus-visible {
+    background: rgba(56, 189, 248, 0.9);
+    outline: none;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .modal-inner {
+        padding: 16px;
+    }
+
+    .close-btn,
+    .arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .left-arrow {
+        left: 10px;
+    }
+
+    .right-arrow {
+        right: 10px;
+    }
+}

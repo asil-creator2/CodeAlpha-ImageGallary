@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Image Gallery</title>
+    <meta name="description" content="A modern responsive image gallery with filters, accessible modal preview, and dark/light theme support.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="hero" aria-label="Gallery header">
+            <div>
+                <h1>Modern Image Gallery</h1>
+                <p>Browse by category, open images in a modal, and switch between light and dark mode.</p>
+            </div>
+            <button id="theme-toggle" type="button" aria-pressed="false">Switch to Light Mode</button>
+        </header>
+
+        <section class="filters" aria-label="Image category filters">
+            <button class="filter-btn active" data-filter="all" type="button">All</button>
+            <button class="filter-btn" data-filter="nature" type="button">Nature</button>
+            <button class="filter-btn" data-filter="city" type="button">City</button>
+            <button class="filter-btn" data-filter="animals" type="button">Animals</button>
+        </section>
+
+        <main class="gallery" id="gallery" aria-live="polite">
+            <article class="image-card nature">
+                <button type="button" class="image-button" data-index="0">
+                    <img src="https://picsum.photos/id/10/600/400" alt="Forest with sunlight through trees">
+                </button>
+            </article>
+            <article class="image-card nature">
+                <button type="button" class="image-button" data-index="1">
+                    <img src="https://picsum.photos/id/11/600/400" alt="Green landscape and misty hills">
+                </button>
+            </article>
+            <article class="image-card nature">
+                <button type="button" class="image-button" data-index="2">
+                    <img src="https://picsum.photos/id/12/600/400" alt="Mountain lake with reflection">
+                </button>
+            </article>
+            <article class="image-card nature">
+                <button type="button" class="image-button" data-index="3">
+                    <img src="https://picsum.photos/id/13/600/400" alt="Sunset over wooded hills">
+                </button>
+            </article>
+            <article class="image-card nature">
+                <button type="button" class="image-button" data-index="4">
+                    <img src="https://picsum.photos/id/14/600/400" alt="Path through a lush forest">
+                </button>
+            </article>
+            <article class="image-card nature">
+                <button type="button" class="image-button" data-index="5">
+                    <img src="https://picsum.photos/id/15/600/400" alt="Riverside forest scene">
+                </button>
+            </article>
+
+            <article class="image-card city">
+                <button type="button" class="image-button" data-index="6">
+                    <img src="https://picsum.photos/id/1011/600/400" alt="City skyline during blue hour">
+                </button>
+            </article>
+            <article class="image-card city">
+                <button type="button" class="image-button" data-index="7">
+                    <img src="https://picsum.photos/id/1012/600/400" alt="Urban street with modern architecture">
+                </button>
+            </article>
+            <article class="image-card city">
+                <button type="button" class="image-button" data-index="8">
+                    <img src="https://picsum.photos/id/1013/600/400" alt="Night city lights from above">
+                </button>
+            </article>
+            <article class="image-card city">
+                <button type="button" class="image-button" data-index="9">
+                    <img src="https://picsum.photos/id/1014/600/400" alt="Downtown street with skyscrapers"></button>
+            </article>
+            <article class="image-card city">
+                <button type="button" class="image-button" data-index="10">
+                    <img src="https://picsum.photos/id/1015/600/400" alt="City bridges over a river"></button>
+            </article>
+            <article class="image-card city">
+                <button type="button" class="image-button" data-index="11">
+                    <img src="https://picsum.photos/id/1016/600/400" alt="Urban building facade with windows"></button>
+            </article>
+
+            <article class="image-card animals">
+                <button type="button" class="image-button" data-index="12">
+                    <img src="https://picsum.photos/id/237/600/400" alt="Puppy looking upward">
+                </button>
+            </article>
+            <article class="image-card animals">
+                <button type="button" class="image-button" data-index="13">
+                    <img src="https://picsum.photos/id/1025/600/400" alt="Bird closeup on branch">
+                </button>
+            </article>
+            <article class="image-card animals">
+                <button type="button" class="image-button" data-index="14">
+                    <img src="https://picsum.photos/id/1062/600/400" alt="Cat portrait with green eyes"></button>
+            </article>
+            <article class="image-card animals">
+                <button type="button" class="image-button" data-index="15">
+                    <img src="https://picsum.photos/id/1074/600/400" alt="Elephant closeup in natural habitat"></button>
+            </article>
+            <article class="image-card animals">
+                <button type="button" class="image-button" data-index="16">
+                    <img src="https://picsum.photos/id/219/600/400" alt="Horse in a field"></button>
+            </article>
+            <article class="image-card animals">
+                <button type="button" class="image-button" data-index="17">
+                    <img src="https://picsum.photos/id/593/600/400" alt="Deer standing in forest"></button>
+            </article>
+        </main>
+    </div>
+
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+        <div class="modal-backdrop" tabindex="-1"></div>
+        <div class="modal-panel" role="document">
+            <button class="close-btn" type="button" aria-label="Close preview">×</button>
+            <div class="modal-inner">
+                <button class="arrow left-arrow" type="button" aria-label="Previous image">‹</button>
+                <div class="modal-image-wrapper">
+                    <img id="modal-image" src="" alt="">
+                    <p id="modal-title" class="visually-hidden">Image preview</p>
+                </div>
+                <button class="arrow right-arrow" type="button" aria-label="Next image">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js" defer></script>
+</body>
+</html>
